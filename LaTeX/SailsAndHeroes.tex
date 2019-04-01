@@ -1,0 +1,79 @@
+\documentclass[12pt,a4paper]{report}
+%\renewcommand{\baselinestretch}{1.5} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fourier, amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{pdfpages, enumitem, setspace}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{tocloft}
+\usepackage{multienum}
+\usepackage{longtable}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Sails \& Heroes}
+\chead{26.04.2019}
+\rhead{Gruppe ?}
+\rfoot{Side \thepage~af \pageref{LastPage}}
+\lfoot{Désirée, Sofie, Daniel \& Andreas}
+\renewcommand*\contentsname{Indholdsfortegnelse}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+
+\newenvironment{multiitem}{%
+  \multienumerate\renewcommand{\labelname}{\textbullet}%
+}{%
+  \endmultienumerate%
+}
+
+\begin{document}
+
+\title{
+\date{}
+\author{}
+\textsc{\Huge{Modulopgave 3: Sails \& Heroes}} \\
+\vspace{\fill}
+\begin{center}
+%\includegraphics[scale=1]{forside.png}
+\end{center}
+\vspace{\fill}
+{\setstretch{1.0}
+\begin{flushleft}
+\textsc{\large{Klasse: DAT18C}} \\
+\textsc{\large{Gruppe: ?}} \\
+\textsc{\large{Københavns erhvervsakademi}} \\
+\textsc{\large{Afleveringsdato: 26.04.2019}} \\
+\textsc{\large{Vejledere: Asger, David \& jarl}} \\
+\textsc{\large{Antal rapport sider: \pageref{LastPage}}} \\
+\textsc{\large{Udarbejdet af Désirée, Sofie, Daniel \& Andreas}}
+\end{flushleft}
+}
+}
+\maketitle
+
+\newpage
+%\setcounter{page}{1}
+%{\setstretch{1.5}
+%\section*{Abstract}
+%\addcontentsline{toc}{section}{Abstract}
+%Indsæt abstract
+%}
+%\newpage
+
+{\setstretch{1.0}
+\tableofcontents\thispagestyle{fancy}
+\newpage
+}
+
+\section*{Section}
+\addcontentsline{toc}{section}{Section}
+
+\end{document}
