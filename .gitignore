@@ -1,3 +1,6 @@
+# VPP
+*.vpp.*
+
 # Mac
 .DS_Store
 
