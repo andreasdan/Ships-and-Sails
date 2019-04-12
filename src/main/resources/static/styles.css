@@ -1,0 +1,24 @@
+.ocean-column-lowered {
+    margin-top: 20px;
+    position: relative;
+    float: left;
+}
+
+.ocean-column {
+    position: relative;
+    float: left;
+}
+
+.ocean-column img {
+    width: 40px;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.ocean-column-lowered img {
+    width: 40px;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}

@@ -6,8 +6,9 @@
 
 # IntelliJ
 .idea
-*.xml
+*.iws
 *.iml
+*.ipr
 
 # Compiled class file
 *.class
