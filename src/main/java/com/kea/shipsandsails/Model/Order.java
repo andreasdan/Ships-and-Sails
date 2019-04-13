@@ -11,12 +11,12 @@ public class Order {
     private boolean fire; //shoot? only possible if not loading
     private boolean load; //order load
     private int ammunitionType; //0=canonball, 1=chainball, 2=grapeshot
-    private int target; //not possible to shoot straight forward or backward - Enum?
+    private Coordinate target; //not possible to shoot straight forward or backward - Enum?
 
     public Order() {
     }
 
-    public Order(int shipId, int turnNumber, int turn, int sailUsage, List<Coordinate> coordinateList, boolean fire, boolean load, int ammunitionType, int target) {
+    public Order(int shipId, int turnNumber, int turn, int sailUsage, List<Coordinate> coordinateList, boolean fire, boolean load, int ammunitionType, Coordinate target) {
         this.shipId = shipId;
         this.turnNumber = turnNumber;
         this.turn = turn;
@@ -92,11 +92,11 @@ public class Order {
         this.ammunitionType = ammunitionType;
     }
 
-    public int getTarget() {
+    public Coordinate getTarget() {
         return target;
     }
 
-    public void setTarget(int target) {
+    public void setTarget(Coordinate target) {
         this.target = target;
     }
 }
