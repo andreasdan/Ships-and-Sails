@@ -15,8 +15,9 @@ public class AimService {
     public boolean legalAim(Ship ship, Order order)
     {
         Coordinate target = order.getTarget();
-        Coordinate pos = ship.getCoordinate();
+        Coordinate pos = ship.getCoordinate(); //eller skal dette være sidste plads i ordrelisten af koordinater?
         Direction direction = ship.getDirection();
+        int ammu = order.getAmmunitionType();
 
         if(ship.getShipType() == 1)
         {
@@ -30,8 +31,6 @@ public class AimService {
 
                     //flere cases
             }
-
-
         }
 
         return false;
