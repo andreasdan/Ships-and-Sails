@@ -1,11 +1,8 @@
 package com.kea.shipsandsails.Model;
 
 public class Coordinate {
-    int x;
-    int y;
-
-    public Coordinate() {
-    }
+    private int x;
+    private int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
