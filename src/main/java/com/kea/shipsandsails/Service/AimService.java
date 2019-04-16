@@ -19,21 +19,28 @@ public class AimService {
         Direction direction = ship.getDirection();
         int ammu = order.getAmmunitionType();
 
-        if(ship.getShipType() == 1)
-        {
-            switch (direction)
-            {
-                case N:
-                    return (target.getY() == pos.getY() -1) && (target.getX() == pos.getX() || target.getX() == pos.getX() -1);
+        if(ship.getSailors()>=3) {
+            if (ship.getShipType() == 1) {
+                switch (direction) {
+                    case N:
+                        return (target.getY() == pos.getY() - 1) && (target.getX() == pos.getX() || target.getX() == pos.getX() - 1);
 
-                case NE:
-                    return (target.getX() == pos.getX() - 1) && (target.getY() == pos.getY() -1 || target.getY() == pos.getY());
+                    case NE:
+                        return (target.getX() == pos.getX() - 1) && (target.getY() == pos.getY() - 1 || target.getY() == pos.getY());
 
                     //flere cases
+                }
+            } else if (ship.getShipType() == 2) {
+
             }
         }
-
         return false;
 
+    }
+
+    //skal kun i spil hvis legalAim er true!
+    public void aim(Order order, Coordinate pos)
+    {
+        order.setTarget(pos);
     }
 }

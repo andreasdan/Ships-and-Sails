@@ -46,15 +46,27 @@ public class DamageService implements IAttack{
         return false;
     }
 
-    public boolean isHit10(List<Ship> ship, List<Order> order)
+    public boolean isHit10(Ship ship, Order order)
     {
+        Random r = new Random(10);
+        int tal;
+        Coordinate target = order.getTarget();
 
+        for(Coordinate pos : order.getCoordinateList()) {
 
+            if (pos.equals(target)) {
+                tal = r.nextInt();
+                if (tal == 1) {
+                    return true;
+                }
+            }
+        }
         return false;
 
     }
     @Override
     public void resolveAttackOwn(List<Ship> ships, List<Order> orders) {
+        //her skal være et forloop i et forloop så alle skibes tjekkes med alle ordre!
 
         for(int i=0; i<orders.size(); i++)
         {
@@ -64,8 +76,67 @@ public class DamageService implements IAttack{
             if(isHit40(ship, order))
             {
                 int ammuType = order.getAmmunitionType();
+                int firePower = order.getFirePower();
+                double damage = 0.4 * firePower;
+
+                switch (ammuType)
+                {
+                    case 0:
+                        ship.setHull_health(ship.getHull_health() - damage);
+                        break;
+
+                    case 1:
+                        ship.setSail_health(ship.getSail_health() - damage);
+                        break;
+
+                    case 2:
+                        ship.setSailors(ship.getSailors() - damage);
+                        break;
+                }
+                if(isCritical())
+                {
+                    Random r = new Random(20);
+                    int tal = r.nextInt();
+                    if(tal == 1)
+                    {
+                        switch (ammuType)
+                        {
+                            case 0:
+                                shipService.delete();
+                                break;
+
+                            case 1:
+                                ship.setSail_health(//ship breaks 1/turn??);
+                                break;
+
+                            case 2:
+                                ship.setSailors(ship.getSailors() / 2);
+                                break;
+                        }
+
+                    }
+                    else if(tal == 2)
+                    {
+                        switch (ammuType)
+                        {
+                            case 0:
+                                shipService.deleteTurn();
+                                break;
+
+                            case 1:
+                                ship.setSail_health(ship.getSail_health() / 3);
+                                break;
+
+                            case 2:
+                                ship.setSailors(ship.getSailors() / 4);
+                                break;
+                        }
+
+                    }
+                }
             }
         }
+        //return shipList?? bør metoden ikke sende skibene tilbage?
 
     }
 
