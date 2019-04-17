@@ -19,7 +19,6 @@ public class AimService {
         Direction direction = ship.getDirection();
         int ammu = order.getAmmunitionType();
 
-        if(ship.getSailors()>=3) {
             if (ship.getShipType() == 1) {
                 switch (direction) {
                     case N:
@@ -31,9 +30,16 @@ public class AimService {
                     //flere cases
                 }
             } else if (ship.getShipType() == 2) {
+                if(ammu == 1 || ammu == 2)
+                {
+                    switch (direction)
+                    {
+                        case NE:
+                    }
+                }
 
             }
-        }
+
         return false;
 
     }
