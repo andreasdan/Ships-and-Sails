@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Det er vores titel vi kan se på hjemmesiden-->
+    <title>Create Game</title>
+
+    <h1 style="background-color: deeppink">Welcome to Ships and Sails Game</h1>
+
+    <br>
+   <h2>Please enter all all your information</h2>
+
+
+</head>
+<body>
+
+<!--Formular til at indtaste ens både på siden-->
+<form action="/startGame" method="post">
+
+    <div class="form-group">
+        <label>Player</label>
+        <!-- input det er her man kan skrive noget på siden - skal stå på samme måde som i vores database -->
+        <!--placeholder er hvad der skal skrives i det felt- bliv stående-->
+        <input type="text" name="Player" class="form-control" placeholder="What player are you ">
+    </div>
+    <div class="form-group">
+        <label></label>
+        <div class="form-group">
+            <input type="text" name="boats" class="form-control" placeholder="How many boats do you want?">
+        </div>
+        <div class="form-group">
+            <input type="text" name="type of boats" class="form-control" placeholder="Enter your type of boats">
+        </div>
+        <!--Her laver jeg en knap som man ser på siden og gemmer den action der står foroven - kalder den submit-->
+        <button type="startGame" class="btn btn-primary">Start Game</button>
+</form>
+</body>
+</html>

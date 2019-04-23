@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <style>
+
+        /* Det er styling på alt på siden(body er alt hvad jeg kan se på siden)*/
+        body { color: #000080; font-family:Verdana; font-size:0.9em; }
+        table { border-style:solid; border-width:3px; max-width:800px; }
+
+        /*det gælder alle celler (fordi der ikke er punktum eller# foran*/
+        table td { border-style:solid; border-width:1px; width:50px; }
+        th { background-color: #EEEEFF; }
+        .tdFlag { width:40px; }
+        .captainSmallPic { border-style:solid; border-width:2px; width:25px; height:30px; position:absolute; top:-200px; }
+        .captainLargePic { border-style:solid; border-width:3px; }
+        #captainTable { position:absolute; right:344px; top:260px; }
+        #headerDiv { width:100%; height:90px; }
+        #headerDiv img { height:90px; width:100%; }
+        #ocean { position:absolute; top:110px; left:10px; height:400px; width: 400px; }
+        #tableDiv {position:absolute; top:110px; right:10px; }
+        #ship1CaptainSmall { border-color:#FF5555; }
+        #ship1CaptainLarge { border-color:#FF5555; }
+        #ship2CaptainSmall { border-color:#55FF55; }
+        #ship2CaptainLarge { border-color:#55FF55; }
+        #ship3CaptainSmall { border-color:#55FFFF; }
+        #ship3CaptainLarge { border-color:#55FFFF; }
+        #ship4CaptainSmall { border-color:#FFFF55; }
+        #ship4CaptainLarge { border-color:#FFFF55; }
+    </style>
+
+    <script>
+
+        <!--Det der står i tabellen så den ved hvad der hører sammen med hvad-->
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        <!--Den metode klader getURLVars, som returnere den val. der passer til parameteren -->
+        function getUrlParam(parameter){
+            var urlparameter = " ";
+            if(window.location.href.indexOf(parameter) > -1){
+                urlparameter = getUrlVars()[parameter];
+            }
+            return urlparameter;
+        }
+
+<!--Denne metode starter når siden loader-->
+        function go()
+        {
+            <!-- Det 3.første gælder for hele siden-->
+
+            document.getElementById("windDiv").innerHTML = "<strong>Wind: </strong>" + getUrlParam("wind");
+            document.getElementById("speedDiv").innerHTML = "<strong>Speed:</strong> " + getUrlParam('speed');
+            document.getElementById("directionDiv").innerHTML = "<strong>Direction:</strong> " + getUrlParam('direction');
+
+            document.getElementById("tdShip1Flag").innerHTML= "<img src='" + getUrlParam('ship1Nationality') + ".png'/>";
+            document.getElementById("tdShip1Nationality").innerHTML=getUrlParam('ship1Nationality');
+            document.getElementById("tdShip1Name").innerHTML=getUrlParam('ship1Name');
+            document.getElementById("tdShip1NumberOfSailors").innerHTML=getUrlParam('ship1NumberOfSailors');
+            document.getElementById("tdShip1NumberOfRowsOfGuns").innerHTML=getUrlParam('ship1NumberOfRowsOfGuns');
+            document.getElementById("tdShip1HullQuality").innerHTML=getUrlParam('ship1HullQuality');
+            document.getElementById("tdShip1SailQuality").innerHTML=getUrlParam('ship1SailQuality');
+            document.getElementById("tdShip1PositionX").innerHTML=getUrlParam('ship1PositionX');
+            document.getElementById("tdShip1PositionY").innerHTML=getUrlParam('ship1PositionY');
+
+            document.getElementById("tdShip2Flag").innerHTML= "<img src='" + getUrlParam('ship2Nationality') + ".png'/>";
+            document.getElementById("tdShip2Nationality").innerHTML=getUrlParam('ship2Nationality');
+            document.getElementById("tdShip2Name").innerHTML=getUrlParam('ship2Name');
+            document.getElementById("tdShip2NumberOfSailors").innerHTML=getUrlParam('ship2NumberOfSailors');
+            document.getElementById("tdShip2NumberOfRowsOfGuns").innerHTML=getUrlParam('ship2NumberOfRowsOfGuns');
+            document.getElementById("tdShip2HullQuality").innerHTML=getUrlParam('ship2HullQuality');
+            document.getElementById("tdShip2SailQuality").innerHTML=getUrlParam('ship2SailQuality');
+            document.getElementById("tdShip2PositionX").innerHTML=getUrlParam('ship2PositionX');
+            document.getElementById("tdShip2PositionY").innerHTML=getUrlParam('ship2PositionY');
+
+            document.getElementById("tdShip3Flag").innerHTML= "<img src='" + getUrlParam('ship3Nationality') + ".png'/>";
+            document.getElementById("tdShip3Nationality").innerHTML=getUrlParam('ship3Nationality');
+            document.getElementById("tdShip3Name").innerHTML=getUrlParam('ship3Name');
+            document.getElementById("tdShip3NumberOfSailors").innerHTML=getUrlParam('ship3NumberOfSailors');
+            document.getElementById("tdShip3NumberOfRowsOfGuns").innerHTML=getUrlParam('ship3NumberOfRowsOfGuns');
+            document.getElementById("tdShip3HullQuality").innerHTML=getUrlParam('ship3HullQuality');
+            document.getElementById("tdShip3SailQuality").innerHTML=getUrlParam('ship3SailQuality');
+            document.getElementById("tdShip3PositionX").innerHTML=getUrlParam('ship3PositionX');
+            document.getElementById("tdShip3PositionY").innerHTML=getUrlParam('ship3PositionY');
+
+            document.getElementById("tdShip4Flag").innerHTML= "<img src='" + getUrlParam('ship4Nationality') + ".png'/>";
+            document.getElementById("tdShip4Nationality").innerHTML=getUrlParam('ship4Nationality');
+            document.getElementById("tdShip4Name").innerHTML=getUrlParam('ship4Name');
+            document.getElementById("tdShip4NumberOfSailors").innerHTML=getUrlParam('ship4NumberOfSailors');
+            document.getElementById("tdShip4NumberOfRowsOfGuns").innerHTML=getUrlParam('ship4NumberOfRowsOfGuns');
+            document.getElementById("tdShip4HullQuality").innerHTML=getUrlParam('ship4HullQuality');
+            document.getElementById("tdShip4SailQuality").innerHTML=getUrlParam('ship4SailQuality');
+            document.getElementById("tdShip4PositionX").innerHTML=getUrlParam('ship4PositionX');
+            document.getElementById("tdShip4PositionY").innerHTML=getUrlParam('ship4PositionY');
+
+            document.getElementById("ship1CaptainSmall").style.left = getUrlParam('ship1PositionX') + "px";
+            document.getElementById("ship1CaptainSmall").style.top = getUrlParam('ship1PositionY') + "px";
+            document.getElementById("ship2CaptainSmall").style.left = getUrlParam('ship2PositionX') + "px";
+            document.getElementById("ship2CaptainSmall").style.top = getUrlParam('ship2PositionY') + "px";
+            document.getElementById("ship3CaptainSmall").style.left = getUrlParam('ship3PositionX') + "px";
+            document.getElementById("ship3CaptainSmall").style.top = getUrlParam('ship3PositionY') + "px";
+            document.getElementById("ship4CaptainSmall").style.left = getUrlParam('ship4PositionX') + "px";
+            document.getElementById("ship4CaptainSmall").style.top = getUrlParam('ship4PositionY') + "px";
+
+        }
+
+        function changeShipXpos()
+        {
+            var e = document.getElementById("selectXpos");
+            var captainNumber = e[e.selectedIndex].value;
+          document.getElementById("ship" + captainNumber + "CaptainSmall").style.left = document.getElementById("ship1PosX").value + "px";
+        }
+
+    </script>
+</head>
+
+<body onload="go();">
+<div id="headerDiv"><img src="headerPic.png"></div>
+<img id="ocean" src="Ocean_12_12.png">
+
+<div id="tableDiv">
+    <table id="orders">
+        <tr>
+            <th>Ship No.</th>
+            <th colspan="2">Nationality</th>
+            <th>Name</th>
+            <th>Number of sailors</th>
+            <th>Number of rows of Guns</th>
+            <th>Hull quality</th>
+            <th>Sail quality</th>
+            <th>Position X</th>
+            <th>Position Y</th>
+        </tr>
+
+        <tr>
+            <!--td - det er cellerene hvor th er overskriften i tabellen-->
+            <td>1</td>
+            <td id="tdShip1Flag" class="tdFlag"></td>
+            <td id="tdShip1Nationality">&nbsp;</td>
+            <td id="tdShip1Name">&nbsp;</td>
+            <td id="tdShip1NumberOfSailors">&nbsp;</td>
+            <td id="tdShip1NumberOfRowsOfGuns">&nbsp;</td>
+            <td id="tdShip1HullQuality">&nbsp;</td>
+            <td id="tdShip1SailQuality">&nbsp;</td>
+            <td id="tdShip1PositionX">&nbsp;</td>
+            <td id="tdShip1PositionY">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td id="tdShip2Flag" class="tdFlag"></td>
+            <td id="tdShip2Nationality">&nbsp;</td>
+            <td id="tdShip2Name">&nbsp;</td>
+            <td id="tdShip2NumberOfSailors">&nbsp;</td>
+            <td id="tdShip2NumberOfRowsOfGuns">&nbsp;</td>
+            <td id="tdShip2HullQuality">&nbsp;</td>
+            <td id="tdShip2SailQuality">&nbsp;</td>
+            <td id="tdShip2PositionX">&nbsp;</td>
+            <td id="tdShip2PositionY">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td id="tdShip3Flag" class="tdFlag"></td>
+            <td id="tdShip3Nationality">&nbsp;</td>
+            <td id="tdShip3Name">&nbsp;</td>
+            <td id="tdShip3NumberOfSailors">&nbsp;</td>
+            <td id="tdShip3NumberOfRowsOfGuns">&nbsp;</td>
+            <td id="tdShip3HullQuality">&nbsp;</td>
+            <td id="tdShip3SailQuality">&nbsp;</td>
+            <td id="tdShip3PositionX">&nbsp;</td>
+            <td id="tdShip3PositionY">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td id="tdShip4Flag" class="tdFlag"></td>
+            <td id="tdShip4Nationality">&nbsp;</td>
+            <td id="tdShip4Name">&nbsp;</td>
+            <td id="tdShip4NumberOfSailors">&nbsp;</td>
+            <td id="tdShip4NumberOfRowsOfGuns">&nbsp;</td>
+            <td id="tdShip4HullQuality">&nbsp;</td>
+            <td id="tdShip4SailQuality">&nbsp;</td>
+            <td id="tdShip4PositionX">&nbsp;</td>
+            <td id="tdShip4PositionY">&nbsp;</td>
+        </tr>
+    </table>
+
+    <table id="captainTable">
+        <tr>
+            <th>
+                Ship 1
+            </th>
+            <th>
+                Ship 2
+            </th>
+            <th>
+                Ship 3
+            </th>
+            <th>
+                Ship 4
+            </th>
+        </tr>
+        <tr>
+            <!-- De bileder vil ikke ændre sig-->
+            <td>
+                <img class="captainLargePic" id="ship1CaptainLarge" src="ship1Captain.png">
+            </td>
+            <td>
+                <img class="captainLargePic" id="ship2CaptainLarge" src="ship2Captain.png">
+            </td>
+            <td>
+                <img class="captainLargePic" id="ship3CaptainLarge" src="ship3Captain.png">
+            </td>
+            <td>
+                <img class="captainLargePic" id="ship4CaptainLarge" src="ship4Captain.png">
+            </td>
+        </tr>
+    </table>
+
+
+
+    <!-- Her  difinerer jeg de 3 elementer-->
+    <div id="windDiv"></div>
+    <div id="speedDiv"></div>
+    <div id="directionDiv"></div>
+
+    Change X-pos
+    <select id="selectXpos">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    : <input type="text" id="ship1PosX" onchange="changeShipXpos();">
+</div>
+
+<!-- Her difinerer jeg og sætter billederne ind ( i vandet)-->
+<img class="captainSmallPic" id="ship1CaptainSmall" src="ship1Captain.png">
+<img class="captainSmallPic" id="ship2CaptainSmall" src="ship2Captain.png">
+<img class="captainSmallPic" id="ship3CaptainSmall" src="ship3Captain.png">
+<img class="captainSmallPic" id="ship4CaptainSmall" src="ship4Captain.png">
+
+
+<!-- Det der står nederst på siden, så jeg kan se hvordan man kalder den- slette det-->
+<div style="position:absolute; bottom:10px; font-weight:bold;">
+KALD SIDEN MED URL-PARAMETRE - F.EKS:<br/>
+file:///C:/Users/Casper/Documents/Desi/ships2.html?wind=4&speed=
+7&direction=NorthEast&ship1Nationality=danish&ship1Name=Jutlandia&ship1NumberOfSailors=12&ship1NumberOfRowsOfGuns=7&ship1HullQuality=good&ship1SailQuality=
+bad&ship1PositionX=83&ship1PositionY=251&ship2Nationality=norwegian&ship2Name=Pisagua&ship2PositionX=179&ship2PositionY=427&ship3Nationality=
+swedish&ship3Name=Vasa&ship3PositionX=275&ship3PositionY=191&ship4Nationality=british&ship4Name=Victoria&ship4PositionX=339&ship4PositionY=350
+</div>
+</body>
+</html>
