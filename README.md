@@ -1,2 +1,2 @@
-# Sails-and-Heroes
+# Ships and Sails
 Modulopgave 3
