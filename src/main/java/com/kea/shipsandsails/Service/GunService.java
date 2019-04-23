@@ -16,7 +16,7 @@ public class GunService {
 
     public boolean canFire(Ship ship)
     {
-        return ship.getLoad() == 0 && ship.getSailors() >= 3 && ship.hasMoved(); //vi mangler et eller andet til at fortælle om det lykkedes at flytte
+        return ship.getLoad() == 0 && ship.getSailors() >= 3;
     }
     //controlleren skal først tjekke om canFire er true før fire() kan bruges! Før fire bruges skal aiming i spil
     public void fire(Ship ship)
