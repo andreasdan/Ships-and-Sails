@@ -14,13 +14,13 @@ import java.util.Random;
 
 public class DamageService implements IAttack{
 
-    public boolean isHit40(Ship ship, Order order)
+    public boolean isHit40(Order enemyOrder, Order ownOrder)
     {
         Random r = new Random(10);
         int tal;
-        Coordinate target = order.getTarget();
+        Coordinate target = enemyOrder.getTarget(); //enemy order
 
-        for(Coordinate pos : order.getCoordinateList()) {
+        for(Coordinate pos : ownOrder.getCoordinateList()) { //our own ships' coordinateList
 
             if (pos.equals(target)) {
                 tal = r.nextInt();
@@ -73,10 +73,10 @@ public class DamageService implements IAttack{
             Ship ship = ships.get(i);
             Order order = orders.get(i);
 
-            if(isHit40(ship, order))
+            if(isHit40(order))
             {
                 int ammuType = order.getAmmunitionType();
-                int firePower = order.getFirePower();
+                int firePower = order.getFirePower(); //det er ens eget ansvar at regne ens firepower ud!
                 double damage = 0.4 * firePower;
 
                 switch (ammuType)
@@ -106,7 +106,8 @@ public class DamageService implements IAttack{
                                 break;
 
                             case 1:
-                                ship.setSail_health(//ship breaks 1/turn??);
+                                ship.setSail_health(0);
+                                ship.setSpeed(ship.getSpeed() - 1); //dette skal udføres indtil 0
                                 break;
 
                             case 2:
