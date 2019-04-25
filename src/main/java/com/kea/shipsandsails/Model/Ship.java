@@ -1,12 +1,9 @@
 package com.kea.shipsandsails.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
+//@Entity
 public class Ship {
 
-    @Id
+    //@Id
     private int shipId;
     private int shipType;
     private String nationality;
