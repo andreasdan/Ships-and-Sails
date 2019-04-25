@@ -31,10 +31,10 @@
         #ship4CaptainLarge { border-color:#FFFF55; }
     </style>
 
+    <!--Det der står i tabellen så den ved hvad der hører sammen med hvad-->
     <script>
 
-        <!--Det der står i tabellen så den ved hvad der hører sammen med hvad-->
-        function getUrlVars() {
+            function getUrlVars() {
             var vars = {};
             var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
                 vars[key] = value;
@@ -115,7 +115,15 @@
         {
             var e = document.getElementById("selectXpos");
             var captainNumber = e[e.selectedIndex].value;
-          document.getElementById("ship" + captainNumber + "CaptainSmall").style.left = document.getElementById("ship1PosX").value + "px";
+          document.getElementById("ship" + captainNumber + "CaptainSmall").style.left = document.getElementById("shipPosX").value + "px";
+        }
+
+        function changeShipYpos()
+        {
+                var e = document.getElementById("selectYpos");
+                var captainNumber = e[e.selectedIndex].value;
+                document.getElementById("ship" + captainNumber + "CaptainSmall").style.top = document.getElementById("shipPosY").value + "px";
+
         }
 
     </script>
@@ -239,7 +247,15 @@
         <option value="3">3</option>
         <option value="4">4</option>
     </select>
-    : <input type="text" id="ship1PosX" onchange="changeShipXpos();">
+    : <input type="text" id="shipPosX" onchange="changeShipXpos();">
+    Change Y-pos
+    <select id="selectYpos">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    : <input type="text" id="shipPosY" onchange="changeShipYpos();">
 </div>
 
 <!-- Her difinerer jeg og sætter billederne ind ( i vandet)-->
@@ -252,7 +268,7 @@
 <!-- Det der står nederst på siden, så jeg kan se hvordan man kalder den- slette det-->
 <div style="position:absolute; bottom:10px; font-weight:bold;">
 KALD SIDEN MED URL-PARAMETRE - F.EKS:<br/>
-file:///C:/Users/Casper/Documents/Desi/ships2.html?wind=4&speed=
+file:///C:/Users/Documents/Desi/ships2.html?wind=4&speed=
 7&direction=NorthEast&ship1Nationality=danish&ship1Name=Jutlandia&ship1NumberOfSailors=12&ship1NumberOfRowsOfGuns=7&ship1HullQuality=good&ship1SailQuality=
 bad&ship1PositionX=83&ship1PositionY=251&ship2Nationality=norwegian&ship2Name=Pisagua&ship2PositionX=179&ship2PositionY=427&ship3Nationality=
 swedish&ship3Name=Vasa&ship3PositionX=275&ship3PositionY=191&ship4Nationality=british&ship4Name=Victoria&ship4PositionX=339&ship4PositionY=350

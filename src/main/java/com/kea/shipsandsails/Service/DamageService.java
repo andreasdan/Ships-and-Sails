@@ -1,7 +1,7 @@
 /**
  * @Author: Sofie Vonge Jensen
- * DamageService tager sig af at udregne skade på egne skibe og evaluere om spillet er slut
- */
+        * DamageService tager sig af at udregne skade på egne skibe og evaluere om spillet er slut
+        */
 
 package com.kea.shipsandsails.Service;
 
