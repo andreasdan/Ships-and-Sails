@@ -73,24 +73,28 @@ public class DamageService implements IAttack{
             Ship ship = ships.get(i);
             Order order = orders.get(i);
 
-            if(isHit40(order))
+            // order2 skal ikke være order...
+            Order order2 = order;
+
+            if(isHit40(order, order2))
             {
                 int ammuType = order.getAmmunitionType();
-                int firePower = order.getFirePower(); //det er ens eget ansvar at regne ens firepower ud!
+                //int firePower = order.getFirePower(); //det er ens eget ansvar at regne ens firepower ud!
+                int firePower = 2; // for testing purpose
                 double damage = 0.4 * firePower;
 
                 switch (ammuType)
                 {
                     case 0:
-                        ship.setHull_health(ship.getHull_health() - damage);
+                        ship.setHull_health(ship.getHull_health() - (int)Math.ceil(damage));
                         break;
 
                     case 1:
-                        ship.setSail_health(ship.getSail_health() - damage);
+                        ship.setSail_health(ship.getSail_health() - (int)Math.ceil(damage));
                         break;
 
                     case 2:
-                        ship.setSailors(ship.getSailors() - damage);
+                        ship.setSailors(ship.getSailors() - (int)Math.ceil(damage));
                         break;
                 }
                 if(isCritical())
@@ -102,7 +106,7 @@ public class DamageService implements IAttack{
                         switch (ammuType)
                         {
                             case 0:
-                                shipService.delete();
+                                //shipService.delete();
                                 break;
 
                             case 1:
@@ -121,7 +125,7 @@ public class DamageService implements IAttack{
                         switch (ammuType)
                         {
                             case 0:
-                                shipService.deleteTurn();
+                                //shipService.deleteTurn();
                                 break;
 
                             case 1:
@@ -146,12 +150,15 @@ public class DamageService implements IAttack{
         //burde denne ikke returnere noget? fx en String med "vinderen er: "
         //og hvorfor skal vi have en liste af ordre med? vi evaluerer vel på den status, vi sender hinanden
         //efter ordrene er blevet udført så vi skal kun bruge nr på runden
-    evalueteAfterMaxTurn(ships, order);
+    //evalueteAfterMaxTurn(ships, order);
     evaluateAfterSailors(ships);
     evaluateAfterHull(ships);
 
 
     }
+
+    // max antal runder bør være defineret i et scenarie
+    private static final int MAX = 10;
     public void evalueteAfterMaxTurn(List<Ship> ships, Order order)
     {
         //hvis vi slutter efter et MAX antal runder.
